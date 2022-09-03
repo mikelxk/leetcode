@@ -9,5 +9,6 @@ function twoSum(nums: number[], target: number): number[] {
             m[nums[i]] = i;
         }
     }
+    return []
 };
 console.log(twoSum([3, 2, 4], 6));
