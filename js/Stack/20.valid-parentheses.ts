@@ -7,7 +7,7 @@ function isValid(s: string): boolean {
   let stack: string[] = []
   for (const str of s) {
     if (str in m) {
-      if (stack.length != 0 && stack[stack.length - 1] === m[str]) {
+      if (stack.length != 0 && stack.at(-1) === m[str]) {
         stack.pop()
       } else return false
     } else {

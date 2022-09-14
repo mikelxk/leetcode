@@ -1,16 +1,16 @@
 function twoSum(numbers: number[], target: number): number[] {
-  let [left, right] = [0, numbers.length - 1]
-  while (left < right) {
-    const sum = numbers[left] + numbers[right]
+  let [l, r] = [0, numbers.length - 1]
+  while (l < r) {
+    const sum = numbers[l] + numbers[r]
 
-    const isTarget = sum === target
-    if (isTarget) return [left + 1, right + 1]
-    
-    const targetGt = sum < target
-    if (targetGt) ++left
-
-    const targetLs = target < sum
-    if (targetLs) --right
+    if (sum === target) return [l + 1, r + 1]
+    //target greater than sum
+    if (sum < target) {
+      ++l
+    } else {
+      //target is less than sum
+      --r
+    }
   }
   return [-1, -1]
 }
