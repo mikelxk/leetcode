@@ -1,35 +1,33 @@
-const MAX_DEPTH = 4
-function maxScoreVisit(siteScores: number[], trainRoutes: number[][]) {
+function findMaxVisitScore(siteScores, trainRoutes) {
   let n = siteScores.length
-  let adj: [number, number][][] = new Array(n)
+  let adj: Array<Array<[number, number]>> = new Array(n)
+  for (let i = 0; i < n; ++i) {
+    adj[i] = []
+  }
   for (const [start, dest] of trainRoutes) {
-    if (!adj[start]) {
-      adj[start] = []
-    }
     adj[start].push([dest, siteScores[dest]])
   }
+
   let max = -1
-  let visited = new Array<boolean>(n)
+  let visited = new Array(n).fill(false)
   for (let i = 0; i < n; ++i) {
-    function dfs(s: number, depth: number, sum: number) {
-      ++depth
-      sum += siteScores[s]
-      visited[i] = true
-      if (depth === MAX_DEPTH) {
-        max = Math.max(max, sum)
-        return
-      }
-      if (!adj[s]) {
-        return
-      }
-      for (const [dest] of adj[s]) {
-        if (!visited[dest]) {
-          dfs(dest, depth, sum)
-        }
+    dfs(i, 1, siteScores[i])
+  }
+  function dfs(s, depth, sum) {
+    visited[s] = true
+    if (depth == 4) {
+      max = Math.max(max, sum)
+      visited.fill(false)
+      return
+    }
+    for (const [dest] of adj[s]) {
+      if (!visited[dest]) {
+        ++depth
+        dfs(dest, depth, sum + siteScores[dest])
+        --depth
       }
     }
-    visited.fill(false)
-    dfs(i, 0, 0)
+    visited[s] = false
   }
   return max
 }
@@ -42,5 +40,13 @@ let route = [
   [0, 2],
   [4, 3],
 ]
-let a = maxScoreVisit(score, route)
+let a = findMaxVisitScore(score, route)
 console.log(a)
+let s1 = [90, 90, 90, 90]
+let r1 = [
+  [0, 1],
+  [2, 1],
+  [1, 3],
+  [1, 2],
+]
+console.log(findMaxVisitScore(s1, r1))
