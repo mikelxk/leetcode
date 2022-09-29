@@ -22,9 +22,7 @@ function findMaxVisitScore(siteScores, trainRoutes) {
     }
     for (const [dest] of adj[s]) {
       if (!visited[dest]) {
-        ++depth
-        dfs(dest, depth, sum + siteScores[dest])
-        --depth
+        dfs(dest, depth + 1, sum + siteScores[dest])
       }
     }
     visited[s] = false
