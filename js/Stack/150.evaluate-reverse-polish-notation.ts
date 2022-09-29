@@ -1,10 +1,9 @@
-const op = {
+const op: Record<string, (a: number, b: number) => number> = {
   "+": (a, b) => a + b,
   "-": (a, b) => a - b,
   "*": (a, b) => a * b,
   "/": (a, b) => Math.floor(a / b),
 }
-
 function evalRPN(tokens: string[]): number {
   const stack: number[] = []
   for (const token of tokens) {
