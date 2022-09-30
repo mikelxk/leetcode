@@ -3,39 +3,30 @@ function implementAPI(logs: string[]) {
   let login = {}
   let res: string[] = []
   for (let log of logs) {
-    let split = log.split(" ")
-    const op = split[0]
-    const username = split[1]
+    let [op, username, passwd] = log.split(" ")
     if (op === "register") {
       if (username in register) {
         res.push("Username already exists")
       } else {
-        register[username] = split[2]
+        register[username] = passwd
         res.push("registered Successfully")
       }
     } else if (op === "login") {
-      const passwd = split[2]
       if (username in register) {
         //already logged
         if (username in login) {
           res.push("Login uncessfully")
+        } else if (register[username] === passwd) {
+          login[username] = passwd
+          res.push("Logged in Successfully")
         } else {
-          if (register[username] === passwd) {
-            login[username] = passwd
-            res.push("Logged in Successfully")
-          } else {
-            res.push("Login uncessfully")
-          }
+          res.push("Login uncessfully")
         }
       }
     } else if (op === "logout") {
-      if (username in register) {
-        if (username in login) {
-          delete login[username]
-          res.push("Logged out Successfully")
-        } else {
-          res.push("Logout Uncessfully")
-        }
+      if (username in register && username in login) {
+        delete login[username]
+        res.push("Logged out Successfully")
       } else {
         res.push("Logout Uncessfully")
       }

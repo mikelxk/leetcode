@@ -2,9 +2,6 @@ function numDecodings(s: string): number {
   if (s.length === 0 || s[0] === "0") {
     return 0
   }
-  return decode(s)
-}
-function decode(s: string) {
   let [prev, beforePrev] = [1, 1]
   for (let curr = 1; curr < s.length; ++curr) {
     let tmp = prev

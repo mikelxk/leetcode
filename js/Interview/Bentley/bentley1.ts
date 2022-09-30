@@ -4,7 +4,7 @@ function solution(S: string) {
     m[c] = m[c] ? m[c] + 1 : 1
   }
   let oddCnt = 0
-  for (const [k, v] of Object.entries(m)) {
+  for (const v of Object.values(m)) {
     if (v % 2 == 1) {
       oddCnt++
     }
