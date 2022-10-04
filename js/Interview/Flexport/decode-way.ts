@@ -39,4 +39,4 @@ function numDecodings(s: string): number {
   }
 }
 
-console.log(numDecodingsDp("11106"))
+console.log(numDecodingsDp("06"))
