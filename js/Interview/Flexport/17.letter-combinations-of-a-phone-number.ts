@@ -11,20 +11,19 @@ const digitMap: Record<string, string> = {
 }
 function letterCombinations(digits: string): string[] {
   let n = digits.length
-
   if (n == 0) {
     return []
   }
   let res: string[] = []
-  dfs(0, "")
+  backtrack(0, "")
   return res
-  function dfs(pos: number, str: string) {
+  function backtrack(pos: number, str: string) {
     if (pos === n) {
       res.push(str)
+      return
     }
-    let letters = digitMap[digits[pos]]
-    for (let letter of letters) {
-      dfs(pos + 1, str + letter)
+    for (let c of digitMap[digits[pos]]) {
+      backtrack(pos + 1, str + c)
     }
   }
 }
