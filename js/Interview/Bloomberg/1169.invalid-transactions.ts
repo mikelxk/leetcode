@@ -2,10 +2,8 @@ type trans = {
   index: number
   time: number
   city: string
-  amount: number
 }
 function invalidTransactions(transactions: string[]): string[] {
-  let res = new Array<string>()
   let transMap = new Map<string, trans[]>()
   let n = transactions.length
   let invalidTrans = new Array<boolean>(n)
@@ -20,7 +18,7 @@ function invalidTransactions(transactions: string[]): string[] {
       transMap.set(people, [])
     }
     let otherTrans = transMap.get(people)
-    otherTrans.push({ time, city, amount, index: i })
+    otherTrans.push({ time, city, index: i })
     for (let t of otherTrans) {
       if (t.city !== city && Math.abs(t.time - time) <= 60) {
         invalidTrans[i] = true
@@ -29,12 +27,7 @@ function invalidTransactions(transactions: string[]): string[] {
       }
     }
   }
-  for (let i = 0; i < n; ++i) {
-    if (invalidTrans[i]) {
-      res.push(transactions[i])
-    }
-  }
-  return res
+  return transactions.filter((_, i) => invalidTrans[i])
 }
 console.log(
   invalidTransactions([

@@ -1,3 +1,25 @@
+function longestPalindrome(s: string): string {
+  let res = ""
+  let maxLen = 0
+  for (let i = 0; i < s.length; ++i) {
+    function expand(l: number, r: number) {
+      while (l >= 0 && r < s.length && s[l] == s[r]) {
+        let currLen = r - l + 1
+        if (currLen > maxLen) {
+          res = s.substring(l, r + 1)
+          maxLen = currLen
+        }
+        --l
+        ++r
+      }
+    }
+    expand(i, i)
+    expand(i, i + 1)
+  }
+  return res
+}
+console.log(longestPalindrome("cbbd"))
+//aba -> #a#b#a#
 function prepocess(s: string) {
   let p = s.split("").join("#")
   return `#${p}#`
@@ -52,4 +74,3 @@ function longestPalindromeMan(s: string) {
     .split("#")
     .join("")
 }
-console.log(longestPalindromeMan("abaaaa"))

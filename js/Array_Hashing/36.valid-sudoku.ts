@@ -1,7 +1,8 @@
+type soduSet = { [key: number]: Set<string> }
 function isValidSudoku(board: string[][]): boolean {
-  const rows: Record<number, Set<string>> = {}
-  const cols: Record<number, Set<string>> = {}
-  const squares: Record<string, Set<string>> = {}
+  const rows: soduSet = {}
+  const cols: soduSet = {}
+  const squares: soduSet = {}
 
   for (let i = 0; i < 9; ++i) {
     for (let j = 0; j < 9; ++j) {

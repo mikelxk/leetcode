@@ -22,7 +22,7 @@ function unhappyFriends(
         if (potentialMatesMate === person) {
           return 1
         } else if (potentialMatesMate === matesCurr) {
-          break 
+          break
         }
       }
     }
