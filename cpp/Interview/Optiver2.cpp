@@ -1,3 +1,4 @@
+#include <array>
 #include <iostream>
 using namespace std;
 struct Node {
@@ -98,61 +99,61 @@ struct Tree {
         cout << ")";
     }
 };
-
+bool withinRange(char c)
+{
+    return c >= 'A' && c <= 'Z';
+}
 int main()
 {
     Tree t;
     string str;
-    bool error = false;
-
+    // e1->e5
+    std::array<bool, 6> errors = {};
     getline(cin, str);
 
     for (int i = 0; i < str.size(); i += 6) {
-        if (!(str[i] == '(' && str[i + 2] == ',' && str[i + 4] == ')')) {
+        char open = str[i];
+        char p = str[i + 1];
+        char delim = str[i + 2];
+        char c = str[i + 3];
+        char close = str[i + 4];
+        if (!(open == '(' && delim == ',' && close == ')' && withinRange(p) && withinRange(c))) {
             // E1 Invalid input Format
-            cout << "E1";
-            error = true;
+            errors[1] = true;
             break;
         }
         else {
-            char p = str[i + 1];
-            char c = str[i + 3];
             bool parentExist = t.exist(p);
             bool childExist = t.exist(c);
             if (parentExist && childExist) {
                 if (t.findPair(p, c)) {
                     // E2  Duplicate pair
-                    cout << "E2";
+                    errors[2] = true;
                 }
                 else {
                     // E5 Input contain Cycle
-                    cout << "E5";
+                    errors[5] = true;
                 }
-                error = true;
                 break;
             }
-            else {
-                if (t.root && !parentExist) {
-                    // E4 Multiple root
-                    cout << "E4";
-                    error = true;
-                    break;
-                }
-                else {
-                    if (!t.add(p, c)) {
-                        // E3 Parent have more than one child
-                        cout << "E3";
-                        error = true;
-                        break;
-                    }
-                }
+            if (t.root && !parentExist) {
+                // E4 Multiple roots
+                errors[4] = true;
+                break;
+            }
+            if (!t.add(p, c) && parentExist) {
+                // E3 Parent have more than one child
+                errors[3] = true;
+                break;
             }
         }
     }
-
-    if (!error) {
-        t.S_expression();
+    for (int i = 1; i < 6; ++i) {
+        if (errors[i]) {
+            cout << 'E' << i;
+            return 0;
+        }
     }
-
+    t.S_expression();
     return 0;
 }

@@ -5,20 +5,27 @@ int DaysInMonth(int month, int year);
  */
 int DaysBetween(int year1, int month1, int day1, int year2, int month2, int day2)
 {
-    int res = 0;
-    // same month
+    // same month same year
     if (year1 == year2 && month1 == month2) {
         return day2 - day1;
     }
-    //go to next month
-    res += DaysInMonth(month1, year1) - day1;
-    int m = month1 + 1;
-    for (int i = year1; i <= year2; ++i) {
+    // go to next month
+    int m = month1;
+    if (month1 < 12) {
+        ++m;
+    }
+    else if (month1 == 12) {
+        m = 1;
+        ++year1;
+    }
+    // get date in between
+    int res = DaysInMonth(month1, year1) - day1;
+    for (int y = year1; y <= year2; ++y) {
         for (; m <= 12; ++m) {
-            if (i == year2 && m == month2) {
+            if (y == year2 && m == month2) {
                 break;
             }
-            res += DaysInMonth(m, i);
+            res += DaysInMonth(m, y);
             if (m == 12) {
                 m = 1;
                 break;

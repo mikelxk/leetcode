@@ -1,5 +1,6 @@
 function twoSum(numbers: number[], target: number): number[] {
-  let [l, r] = [0, numbers.length - 1]
+  let l = 0,
+    r = numbers.length - 1
   while (l < r) {
     const sum = numbers[l] + numbers[r]
 
