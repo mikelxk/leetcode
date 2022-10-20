@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "bun-types": "^0.1.11"
+    "bun-types": "latest"
   }
 }
