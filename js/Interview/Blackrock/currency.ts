@@ -1,10 +1,11 @@
 const rates: [string, string, number][] = [
-  ["USD", "JPY", 110],
-  ["USD", "AUD", 1.45],
-  ["JPY", "GBP", 0.007],
+  ["USD", "CAD", 1.3],
+  ["USD", "GBP", 0.71],
+  ["USD", "JPY", 109],
+  ["GBP", "JPY", 155],
 ]
-const SRC = "GBP"
-const DEST = "AUD"
+const SRC = "USD"
+const DEST = "JPY"
 function main() {
   let graph = new Map<string, Map<string, number>>()
   //construct map
@@ -16,11 +17,11 @@ function main() {
   }
   for (let [from, to, curr] of rates) {
     insertM(from, to, curr)
-    insertM(to, from, 1 / curr)
   }
   let res = [-1]
   getWeight(SRC, DEST, new Set<string>())
   console.log(res)
+  return Math.max(...res)
   function getWeight(
     start: string,
     end: string,
