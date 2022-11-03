@@ -1,12 +1,13 @@
 function jump(nums: number[]): number {
-  let [res, l, r] = [0, 0, 0]
-  for (; r < nums.length - 1; ++res) {
-    let farthest = 0
-    for (let i = l; i < r + 1; ++i) {
-      farthest = Math.max(farthest, i + nums[i])
+  let res = 0,
+    currEnd = 0,
+    farthest = 0
+  for (let i = 0; i < nums.length; ++i) {
+    farthest = Math.max(farthest, i + nums[i])
+    if (i == currEnd) {
+      ++res
+      currEnd = farthest
     }
-    l = r + 1
-    r = farthest
   }
   return res
 }
