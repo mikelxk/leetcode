@@ -1,19 +1,20 @@
 function minTaps(n: number, ranges: number[]): number {
-  let nums = new Array<number>(ranges.length)
+  let nums = new Array<number>(ranges.length).fill(0)
   for (let i = 0; i <= n; ++i) {
     let s = Math.max(0, i - ranges[i])
-    nums[s] = Math.max(nums[s], i + ranges[i])
+    nums[s] = Math.max(i + ranges[i],nums[s])
   }
   let res = 0,
-    l = 0,
-    e = 0
-  for (let i = 0; i < n; ++i) {
-    if (i > e) return -1
-    if (i > l) {
+    currEnd = 0,
+    furthest = 0
+  for (let i = 0; i <= n; ++i) {
+    if (i > furthest) return -1
+    if (i > currEnd) {
       ++res
-      l = e
+      currEnd = furthest
     }
-    e = Math.max(e, nums[i])
+    furthest = Math.max(furthest, nums[i])
   }
   return res
 }
+console.log(minTaps(5, [3, 4, 1, 1, 0, 0]))
