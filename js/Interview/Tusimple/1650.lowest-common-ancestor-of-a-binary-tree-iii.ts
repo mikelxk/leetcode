@@ -19,11 +19,15 @@ export function lowestCommonAncestor(
   p: Node | null,
   q: Node | null
 ): Node | null {
+  // let a = p,
+  //   b = q
+  // while (a !== b) {
+  //   a = a?.parent || p
+  //   b = b?.parent || q
+  // }
+  // return a
   let a = p,
     b = q
-  while (a !== b) {
-    a = a?.parent || p
-    b = b?.parent || q
-  }
+  for (; a !== b; a = a?.parent || q, b = b?.parent || p);
   return a
 }
