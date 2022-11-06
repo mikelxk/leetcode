@@ -1,11 +1,10 @@
 function minimumCost(n: number, connections: number[][]): number {
   let parent = [...Array(n + 1).keys()]
   function find(x: number) {
-    if (parent[x] === x) {
-      return parent[x]
+    while (x !== parent[x]) {
+      x = parent[x] = parent[parent[x]]
     }
-    parent[x] = find(parent[x])
-    return parent[x]
+    return x
   }
   let res = 0
   connections.sort((a, b) => a[2] - b[2])
