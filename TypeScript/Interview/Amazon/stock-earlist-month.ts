@@ -1,4 +1,4 @@
-function count(number: []) {
+function count(number: number[]) {
   let prevSum: number[] = []
   let postSum: number[] = []
   const n = number.length
