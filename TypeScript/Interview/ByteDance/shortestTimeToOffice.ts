@@ -9,14 +9,25 @@ function get_shortest_time(
       dist.set(x, Infinity)
     }
   }
-  dist.set(startNode,0)
-
-  for (let [u, v, w] of paths) {
+  for (let [u, v] of paths) {
     init(u)
     init(v)
-    let d = Number(w)
-    dist.set(v, Math.min(dist.get(v), dist.get(u) + d))
+  }
+  dist.set(startNode, 0)
+  for (let i = 1; i < dist.size; ++i) {
+    for (let [u, v, w] of paths) {
+      let d = Number(w)
+      dist.set(v, Math.min(dist.get(v), dist.get(u) + d))
+    }
   }
   console.log(dist)
+  return dist.get(endNode)
 }
-get_shortest_time("S0","S4",[["S0","S11","16"],["S0","S12","22"]])
+console.log(
+  get_shortest_time("S0", "S4", [
+    ["S0", "S11", "16"],
+    ["S0", "S12", "22"],
+    ["S12", "S4", "5"],
+    ["S11", "S4", "15"],
+  ])
+)
