@@ -20,7 +20,6 @@ function get_shortest_time(
       dist.set(v, Math.min(dist.get(v), dist.get(u) + d))
     }
   }
-  console.log(dist)
   return dist.get(endNode)
 }
 console.log(
