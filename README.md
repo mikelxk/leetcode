@@ -1,4 +1,4 @@
-# Mike's leetcode chanlenge
+# Mike's leetcode challenge
 based on [Neetcode](https://neetcode.io)
 
-This is now the [first round written in c++](cpp)
+This is now the [Second round written in Typescript](Typescript)
