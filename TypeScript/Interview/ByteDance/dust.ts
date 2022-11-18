@@ -1,10 +1,18 @@
 function dust(m: number, n: number, plan: [number, number][]) {
-  let [l, r] = plan[0]
+  let tasks = new Array<number>(n + 1).fill(0)
   for (let [start, end] of plan) {
-    l = Math.min(start, l)
-    r = Math.max(end, r)
+    ++tasks[start]
+    --tasks[end + 1]
   }
-  return l + (n - 1 - r)
+  let res = 0
+  let s = 0
+  for (let i = 0; i < tasks.length - 1; ++i) {
+    s += tasks[i]
+    if (s == 0) {
+      ++res
+    }
+  }
+  return res
 }
 console.log(
   dust(2, 7, [
