@@ -1,4 +1,4 @@
-#include "../std.hpp"
+#include "../../std.hpp"
 // Imagine you are playing a gravity-based puzzle game that involves clearing obstacles to allow an irregularly-shaped figure to fall to the bottom.
 // input : A rectangular matrix representing the board consisting of the characters '.', '*', and '#'. It's guaranteed that one of the cells of the board will be '*'
 int solution(vector<vector<char>> board)

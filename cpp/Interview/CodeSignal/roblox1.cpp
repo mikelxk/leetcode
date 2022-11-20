@@ -1,4 +1,4 @@
-#include "../std.hpp"
+#include "../../std.hpp"
 vector<int> solution(vector<int> diffs)
 {
     int curr = 1500, max = 1500;
