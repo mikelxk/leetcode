@@ -3,6 +3,7 @@
     "lib": ["ESNext"],
     "target": "ESNext",
     "module": "ESNext",
-    "types": ["bun-types"]
+    "types": ["bun-types"],
+    "moduleResolution": "Node16"
   }
 }
