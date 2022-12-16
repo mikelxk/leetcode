@@ -13,11 +13,3 @@ class ProductOfNumbers {
     return k < this.arr.length ? this.arr.at(-1) / this.arr.at(-k - 1) : 0
   }
 }
-let cn = new ProductOfNumbers()
-cn.add(3)
-cn.add(0)
-cn.add(2)
-cn.add(5)
-cn.add(4)
-
-console.log(cn)
