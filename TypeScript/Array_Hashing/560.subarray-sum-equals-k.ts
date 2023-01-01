@@ -1,8 +1,7 @@
 function subarraySum(nums: number[], k: number): number {
   let res = 0,
     sum = 0
-  let map = new Map<number, number>()
-  map.set(0, 1)
+  let map = new Map<number, number>([[0, 1]])
   for (let n of nums) {
     sum += n
     if (map.has(sum - k)) {

@@ -11,12 +11,12 @@ function reverseKGroup(head: ListNode | null, k: number): ListNode | null {
       curr = groupPrev.next
 
     while (curr !== groupNext) {
-      var tmp = curr.next
+      let tmp = curr.next
       curr.next = prev
       prev = curr
       curr = tmp
     }
-    tmp = groupPrev.next
+    let tmp = groupPrev.next
     groupPrev.next = kth
     groupPrev = tmp
   }

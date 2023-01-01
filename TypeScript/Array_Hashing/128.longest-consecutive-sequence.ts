@@ -3,10 +3,8 @@ function longestConsecutive(nums: number[]): number {
   let longest = 0
   for (let n of nums) {
     if (!numSet.has(n - 1)) {
-      let length = 1
-      while (numSet.has(n + length)) {
-        ++length
-      }
+      let length: number
+      for (length = 1; numSet.has(n + length); ++length);
       longest = Math.max(length, longest)
     }
   }
